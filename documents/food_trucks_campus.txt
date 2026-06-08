@@ -1,0 +1,32 @@
+Source: RSU Student Activities — Food Truck Schedule (scraped from campus events page, Fall 2024)
+URL: https://activities.rsu.edu/food-trucks/schedule
+
+Riverside State University hosts 4-6 food trucks on campus daily. Locations and schedules change each semester. Food trucks accept dining dollars, credit cards, and cash. They do NOT accept dining hall meal swipes.
+
+Weekly recurring schedule (Fall 2024):
+
+Monday — Library Plaza:
+- Taco Loco (11 AM - 3 PM): Street tacos, burritos, quesadillas. Student favorite: carnitas burrito ($9). Vegetarian burrito with black beans and grilled peppers ($8).
+- BrewBike Coffee (8 AM - 12 PM): Pedal-powered coffee cart. Pour-over and cold brew. Cheapest coffee on campus at $2.50.
+
+Tuesday — Engineering Quad:
+- Green Bowl (11 AM - 3 PM): 100% vegan menu. Buddha bowls, smoothie bowls, avocado toast. Club-rated best vegan option on campus (4.8/5). Popular: the "RSU Special" bowl with quinoa, chickpeas, kale, and lemon tahini ($10).
+- Smash Burger Co. (11 AM - 7 PM): Smash burgers, fries, milkshakes. Long lines at lunch (15 min average).
+
+Wednesday — Student Union:
+- Seoul Kitchen (11 AM - 4 PM): Korean fried chicken, bibimbap bowls, kimchi fries. Spicy chicken sandwich is the top seller.
+- Night Owl (9 PM - 1 AM, Thu-Sat only — see late_night_eating.txt)
+
+Thursday — Library Plaza:
+- Green Bowl (11 AM - 3 PM) — repeat from Tuesday.
+- Slice Society (11 AM - 8 PM): New York style pizza by the slice. $4/slice, $18 whole pie. Garlic knots highly recommended.
+
+Friday — Arts Quad:
+- Curry Cart (11 AM - 3 PM): Indian street food. Butter chicken, samosas, naan wraps. Spice level customizable. Consistently rated 4.5/5.
+- Dessert Truck "Sweet Wheels" (2 PM - 6 PM): Cookies, brownies, ice cream sandwiches.
+
+Student tips:
+- Food truck lines are shortest 11:00-11:30 AM and after 2:00 PM.
+- Download the "RSU Eats" app for real-time truck locations — the printed schedule is often wrong when trucks cancel.
+- Dining dollars work at all trucks but cannot be used for meal plan swipes.
+- Green Bowl and Curry Cart sell out of popular items by 1:30 PM on busy days.

@@ -1,0 +1,33 @@
+Source: RSU Dining Wait Time Log — student crowdsourced spreadsheet (Fall 2024, 6 weeks of data)
+URL: https://docs.google.com/spreadsheets/d/rsu-dining-wait-times-2024
+
+This document summarizes average wait times collected by student volunteers who timed their dining hall and cafe visits during Fall 2024.
+
+North Dining Hall:
+- Breakfast (7:00-9:00 AM): 2-5 minutes. Near zero wait before 7:30 AM.
+- Lunch peak (11:45 AM - 1:15 PM): 18-25 minutes at stir-fry and grill stations. Salad bar: 5-8 minutes. Fastest station: cereal and yogurt bar (under 2 minutes).
+- Lunch off-peak (11:00-11:30 AM or after 1:30 PM): 5-10 minutes.
+- Dinner (5:00-7:00 PM): 10-15 minutes at peak. 5 minutes after 7:30 PM.
+- Weekend brunch (10:00 AM - 12:30 PM): 8-12 minutes. Pancake station is the bottleneck.
+
+East Commons:
+- Lunch peak (12:00-1:00 PM): 8-12 minutes. Four food islands reduce congestion compared to North Hall.
+- Lunch off-peak: 3-5 minutes.
+- Weekend brunch (9:00-11:00 AM): 5 minutes. Brunch rush (11:00 AM - 12:30 PM): 15-20 minutes at omelet station.
+- Dinner: 5-8 minutes average.
+
+South Quad Cafe:
+- Morning coffee rush (8:45-9:15 AM): 10 minutes.
+- Lunch sandwich line (12:00-1:00 PM): 12-15 minutes.
+- Off-peak: 2-5 minutes.
+
+West Market:
+- Lunch peak (12:00-1:00 PM, especially Tue/Thu): 15-20 minutes at burrito bowl station.
+- Dinner (5:00-7:00 PM): 8-10 minutes.
+- Late night (9:30-10:30 PM): 5-8 minutes.
+
+Food trucks: Average 10-15 minutes at lunch peak. Green Bowl and Smash Burger Co. consistently have the longest lines (up to 20 minutes).
+
+Best times to eat with minimal wait across all locations: Weekday breakfast before 8:30 AM, weekday lunch at 11:15 AM or after 1:45 PM, dinner after 7:30 PM.
+
+Worst times: Weekday lunch 12:00-1:00 PM at North Hall. Weekend brunch 11:00 AM - 12:30 PM at East Commons.

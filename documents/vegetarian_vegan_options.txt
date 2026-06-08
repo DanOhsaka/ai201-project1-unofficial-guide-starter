@@ -1,0 +1,29 @@
+Source: RSU Plant-Based Students Club — Campus Dining Guide 2024
+URL: https://rsuplantbased.org/dining-guide
+
+This guide maps every vegetarian and vegan option across Riverside State University dining locations, updated each semester by club members who physically audit menus.
+
+North Dining Hall:
+- Grain bowl station: always has tofu, tempeh (Tuesdays), quinoa, brown rice, roasted seasonal vegetables. Sauces: tahini, peanut ginger, balsamic. All vegan.
+- Vegan chili: Wednesdays and Fridays at the soup station. Confirmed vegan by dining services.
+- Pizza station: vegan cheese available on request — quality is poor according to club consensus (rated 2/5).
+- Salad bar: extensive, all dressings labeled. Vegan options: balsamic vinaigrette, oil & vinegar, lemon tahini.
+- Dessert: fruit bar always available. Sorbet on weekends.
+
+East Commons:
+- Dedicated plant-based station at Food Island 3. Entrees rotate: lentil shepherd's pie, jackfruit tacos, tofu stir-fry, mushroom risotto.
+- Allergen-free station also serves vegan meals prepared without cross-contamination.
+- Weekend sushi bar: avocado rolls and cucumber rolls are vegan. Ask for no mayo on spicy rolls.
+- Rated best dining hall for vegans by club vote (4.5/5).
+
+South Quad Cafe:
+- One daily vegan sandwich (hummus veggie wrap or falafel pita). Oat milk for coffee at no charge.
+- Pre-made salads: look for the green "VEGAN" sticker. Usually 2-3 options daily.
+
+West Market:
+- Burrito bowls: choose tofu or beans, skip cheese and sour cream for vegan. Guacamole is free.
+- Grab-and-go: vegan sushi rolls, hummus cups, and fruit cups in the refrigerated section.
+
+Food trucks (see food_trucks_campus.txt): Green Bowl truck is 100% vegan. Taco Loco has a veggie burrito.
+
+Club recommendation: East Commons on weekdays, North Hall grain bowls as backup, Green Bowl truck on Tuesdays and Thursdays at the library plaza.
