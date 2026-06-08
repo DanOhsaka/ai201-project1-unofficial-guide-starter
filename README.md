@@ -53,6 +53,35 @@ The corpus mixes short reviews with longer guide sections. A 400-character chunk
 
 **Final chunk count:** 77 chunks across 12 documents
 
+### Sample chunks
+
+**Chunk 1** — Source: `brunch_weekend_dining.txt` (chunk index 0)
+
+> Source document: brunch_weekend_dining.txt  
+> Weekend dining at Riverside State University is different from weekdays. Only two locations serve brunch, and hours are shorter. East Commons (Saturday-Sunday 9:00 AM - 2:00 PM): The premier weekend brunch destination. Made-to-order omelet station, waffle bar with toppings (berries, whipped cream, chocolate chips)...
+
+**Chunk 2** — Source: `coffee_study_spots.txt` (chunk index 5)
+
+> Source document: coffee_study_spots.txt  
+> No real coffee shop on the 3rd floor, but vending machines sell canned cold brew ($3). Silent study policy makes it the best focus environment (5/5 study rating). Many students buy at South Quad and walk to the library. Study spot rankings from student poll: 1. South Quad Cafe (coffee + study combo) 2. Library 3rd floor...
+
+**Chunk 3** — Source: `food_trucks_campus.txt` (chunk index 5)
+
+> Source document: food_trucks_campus.txt  
+> Dessert Truck "Sweet Wheels" (2 PM - 6 PM): Cookies, brownies, ice cream sandwiches. Student tips: Food truck lines are shortest 11:00-11:30 AM and after 2:00 PM. Download the "RSU Eats" app for real-time truck locations. Dining dollars work at all trucks but cannot be used for meal plan swipes.
+
+**Chunk 4** — Source: `north_hall_reviews.txt` (chunk index 4)
+
+> Source document: north_hall_reviews.txt  
+> Made-to-order omelets open at 7 AM and there's almost no wait before 8:30. The waffle maker is self-serve. Lunch is chaos — eat at 11:15 or after 1:30." Review by u/transfer_student_22: "Compared to my old school, North Hall portions are huge. One swipe gets you unlimited trips...
+
+**Chunk 5** — Source: `west_market_reviews.txt` (chunk index 5)
+
+> Source document: west_market_reviews.txt  
+> Sunday 10:00 AM - 9:00 PM. Student consensus: Best for engineering/science students who need proximity. Food quality 3/5. Convenience 5/5. Wait times 2.5/5 at lunch peak.
+
+Each chunk is self-contained enough to answer a focused question (brunch hours, study spots, food truck tips, North Hall timing advice, West Market proximity).
+
 ---
 
 ## Embedding Model
@@ -72,6 +101,48 @@ If deploying this for real users, I would prefer a stronger semantic embedding m
 
 ---
 
+## Retrieval Test Results
+
+Tested with `python retrieve.py` (top-k = 5). Lower distance = stronger match.
+
+### Query 1: What are the wait times at North Dining Hall during lunch peak?
+
+| Rank | Distance | Source | Top chunk (excerpt) |
+|------|----------|--------|---------------------|
+| 1 | 0.7561 | west_market_reviews.txt | "...Wait times 2.5/5 at lunch peak." |
+| 2 | 0.8094 | dining_wait_times.txt | "This document summarizes average wait times collected by student volunteers..." |
+| 3 | 0.8293 | north_hall_reviews.txt | Rating summary: "Wait times 2/5 at peak lunch..." |
+| 4 | 0.8641 | north_hall_reviews.txt | "North Dining Hall is the largest dining hall on the Riverside State University campus..." |
+| 5 | 0.9110 | dining_wait_times.txt | "...Food trucks: Average 10-15 minutes at lunch peak..." |
+
+**Why these chunks are relevant:** Results #2–#4 come from the wait-time log and North Hall review documents, which directly discuss North Dining Hall lunch congestion and wait times. Result #1 is partially off-target (West Market wait times), which shows a retrieval weakness when multiple documents mention "wait times" with similar keywords.
+
+### Query 2: Which dining hall is best for vegan students?
+
+| Rank | Distance | Source | Top chunk (excerpt) |
+|------|----------|--------|---------------------|
+| 1 | 0.8623 | north_hall_reviews.txt | North Dining Hall overview and reviews |
+| 2 | 0.8992 | vegetarian_vegan_options.txt | "...look for the green VEGAN sticker... Burrito bowls: choose tofu or beans..." |
+| 3 | 0.9069 | west_market_reviews.txt | West Market proximity/consensus |
+| 4 | 0.9123 | north_hall_reviews.txt | "...vegan chili on Wednesdays is the best plant-based hot meal on campus..." |
+| 5 | 0.9132 | vegetarian_vegan_options.txt | "...Rated best dining hall for vegans... East Commons..." |
+
+**Why these chunks are relevant:** Results #2 and #5 are from the dedicated vegetarian/vegan guide and mention vegan options and dining-hall recommendations. Results #1 and #4 mention vegan food at North Hall, which is related but can mislead generation if ranked too high — this contributed to the failure case in the evaluation report.
+
+### Query 3: What late-night food options are available on campus after 9 PM?
+
+| Rank | Distance | Source | Top chunk (excerpt) |
+|------|----------|--------|---------------------|
+| 1 | 0.6783 | late_night_eating.txt | "Where to eat after 9 PM on campus" — limited late-night options |
+| 2 | 0.8925 | late_night_eating.txt | Pro tip about keeping dining dollars for late-night West Market runs |
+| 3 | 0.8965 | late_night_eating.txt | West Market late-night option: chicken tenders, pizza, ramen bar, convenience store |
+| 4 | 0.9173 | dining_wait_times.txt | Late night wait times (5-8 minutes) |
+| 5 | 0.9372 | dining_wait_times.txt | South Quad Cafe lunch line times |
+
+**Why these chunks are relevant:** The top three results all come from `late_night_eating.txt`, which is exactly the document that lists West Market, the Night Owl truck, and convenience-store options after 9 PM. This is the strongest retrieval result of the three test queries.
+
+---
+
 ## Grounded Generation
 
 <!-- Explain how your system enforces grounding — how does it prevent the LLM from answering
@@ -86,6 +157,97 @@ The system prompt explicitly says: answer using only provided excerpts, do not u
 
 **How source attribution is surfaced in the response:**  
 Each retrieved chunk includes `source` metadata and chunk index. The generation context is formatted with source labels per excerpt, and the final response returns a `sources` list programmatically, so attribution is always available even if the LLM omits it in prose.
+
+---
+
+## Example Responses
+
+### Example 1 — Grounded answer with source attribution
+
+**Query:** What are the wait times at North Dining Hall during lunch peak?
+
+**Answer:** The wait times at North Dining Hall during lunch peak (11:45 AM - 1:15 PM) are 18-25 minutes at stir-fry and grill. (dining_wait_times.txt)
+
+**Retrieved from:**
+- dining_wait_times.txt
+- north_hall_reviews.txt
+- west_market_reviews.txt
+
+---
+
+### Example 2 — Grounded answer with source attribution
+
+**Query:** What late-night food options are available on campus after 9 PM?
+
+**Answer:** According to late_night_eating.txt, the late-night food options available on campus after 9 PM are:
+1. West Market (open until 11 PM weekdays) which offers chicken tenders, pizza by the slice, and a ramen bar.
+2. The convenience store for instant noodles and snacks, and salad cups (usually sold out by 10 PM).
+3. The Night Owl truck, but it has zero healthy options.
+
+Note that South Quad Cafe is only an option during final exam reading days, extending its hours to midnight, but not during normal weeks.
+
+**Retrieved from:**
+- dining_wait_times.txt
+- late_night_eating.txt
+
+---
+
+### Example 3 — Out-of-scope refusal
+
+**Query:** What is the acceptance rate for RSU medical school?
+
+**Answer:** I don't have enough information on that.
+
+**Retrieved from:**
+- east_commons_dining.txt
+- late_night_eating.txt
+- meal_plan_guide.txt
+- north_hall_reviews.txt
+- west_market_reviews.txt
+
+The system retrieved dining-related chunks (none contain medical school information) and correctly refused to answer rather than inventing an acceptance rate from general knowledge.
+
+---
+
+## Query Interface
+
+The system uses a **Gradio** web UI (`app.py`). To launch it:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+python app.py
+```
+
+Then open the local URL printed in the terminal (typically `http://127.0.0.1:7860`).
+
+### Input and output fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| **Your question** | Text input (2 lines) | Where the user types a natural-language question about RSU campus dining. Placeholder example: *"What are lunch wait times at North Dining Hall?"* |
+| **Ask** | Button | Submits the question to the RAG pipeline (retrieve → generate). The user can also press Enter in the question box. |
+| **Answer** | Text output (8 lines) | The grounded response generated by Groq using only retrieved document excerpts. |
+| **Retrieved from** | Text output (4 lines) | Bulleted list of source filenames (`documents/*.txt`) for the chunks passed into generation. |
+
+### Sample interaction transcript
+
+```
+[Your question]
+What are the wait times at North Dining Hall during lunch peak?
+
+[User clicks "Ask"]
+
+[Answer]
+The wait times at North Dining Hall during lunch peak (11:45 AM - 1:15 PM) are
+18-25 minutes at stir-fry and grill. (dining_wait_times.txt)
+
+[Retrieved from]
+• dining_wait_times.txt
+• north_hall_reviews.txt
+• west_market_reviews.txt
+```
+
+This interaction shows the full loop: the user asks a specific question, the system returns a grounded answer with an inline source citation, and the **Retrieved from** panel lists which document files supplied the context.
 
 ---
 
